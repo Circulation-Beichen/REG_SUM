@@ -1,0 +1,38 @@
+Windows Registry Editor Version 5.00
+
+; 阻止 Windows 更新 - 结合多种策略
+
+; 策略 1: 禁用自动更新 (通过组策略对应的注册表项)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+"NoAutoUpdate"=dword:00000001
+
+; 策略 2: 移除用户从设置界面访问 Windows 更新的权限
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+"SetDisableUXWUAccess"=dword:00000001
+
+; 策略 3: 将更新服务器指向无效地址 (本机不太可能使用的端口)
+; 强制系统使用指定的更新服务器
+"UseWUServer"=dword:00000001
+; 设置 WUServer 和 WUStatusServer 为无效地址
+"WUServer"="http://127.0.0.1:0"
+"WUStatusServer"="http://127.0.0.1:0"
+
+; 策略 4: 禁用通过 Windows Update 获取驱动程序 (可选，但有助于阻止更新)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings]
+"PreventDeviceMetadataFromNetwork"=dword:00000001
+
+; 策略 5: 阻止 Windows Store 更新应用 (可能影响 Store 应用功能)
+; 注意: 这也可能阻止重要的应用更新
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore]
+"AutoDownload"=dword:00000002
+"DisableStoreApps"=dword:00000001
+
+
+; 清理可能存在的延迟更新设置 (确保不只是延迟)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings]
+"DeferFeatureUpdatesPeriodInDays"=-
+"DeferQualityUpdatesPeriodInDays"=-
+"PauseFeatureUpdatesStartTime"=-
+"PauseQualityUpdatesStartTime"=-
+"PauseUpdatesExpiryTime"=-
+"PauseUpdatesStartTime"=-
