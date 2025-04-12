@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenWithCursor]
+@="open with Cursor"
+
+[HKEY_CLASSES_ROOT\Directory\shell\OpenWithCursor\command]
+@="\"C:\\Application_SourseFile\\cursor\\Cursor.exe\" \"%1\""
