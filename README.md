@@ -4,3 +4,5 @@
   - 把git加入菜单
 - windows_BAN_UPDATE.reg
   - windows停止更新  
+- cursor.reg
+  - 把“用cursor打开加入右键菜单”
